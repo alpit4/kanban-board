@@ -6,7 +6,7 @@ const GroupSelector = ({ setGroupBy }) => {
   };
 
   return (
-    <select onChange={handleChange}>
+    <select className="selector" onChange={handleChange}>
       <option value="status">Group by Status</option>
       <option value="user">Group by User</option>
       <option value="priority">Group by Priority</option>

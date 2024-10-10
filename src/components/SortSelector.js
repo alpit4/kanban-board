@@ -6,7 +6,7 @@ const SortSelector = ({ setSortBy }) => {
   };
 
   return (
-    <select onChange={handleChange}>
+    <select className="selector" onChange={handleChange}>
       <option value="priority">Sort by Priority</option>
       <option value="title">Sort by Title</option>
     </select>
