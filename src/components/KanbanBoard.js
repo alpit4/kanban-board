@@ -6,8 +6,8 @@ import SortSelector from "./SortSelector";
 
 const KanbanBoard = () => {
   const [tickets, setTickets] = useState([]);
-  const [groupBy, setGroupBy] = useState("status"); // Default grouping by status
-  const [sortBy, setSortBy] = useState("priority"); // Default sorting by priority
+  const [groupBy, setGroupBy] = useState("status");
+  const [sortBy, setSortBy] = useState("priority");
 
   useEffect(() => {
     const getData = async () => {
@@ -17,7 +17,6 @@ const KanbanBoard = () => {
     getData();
   }, []);
 
-  // Group tickets based on the selected option
   const groupTickets = () => {
     let grouped = {};
 
@@ -44,7 +43,6 @@ const KanbanBoard = () => {
     return grouped;
   };
 
-  // Sort tickets based on the selected option
   const sortTickets = (group) => {
     return group.sort((a, b) => {
       if (sortBy === "priority") {

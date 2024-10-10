@@ -27,7 +27,7 @@ function App() {
 
   const groupTickets = () => {
     return tickets.reduce((acc, ticket) => {
-      const key = ticket[grouping]; // Dynamic grouping based on selected attribute
+      const key = ticket[grouping];
       if (!acc[key]) {
         acc[key] = [];
       }
@@ -41,9 +41,9 @@ function App() {
     for (const key in grouped) {
       sorted[key] = [...grouped[key]].sort((a, b) => {
         if (sortOrder === "priority") {
-          return b.priority - a.priority; // Sort by priority descending
+          return b.priority - a.priority;
         } else {
-          return a.title.localeCompare(b.title); // Sort by title ascending
+          return a.title.localeCompare(b.title);
         }
       });
     }
@@ -62,7 +62,7 @@ function App() {
             viewBox="0 0 16 16"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            style={{ marginRight: "5px" }} // Add margin to the first SVG
+            style={{ marginRight: "5px" }}
           >
             <path
               fillRule="evenodd"
@@ -72,14 +72,13 @@ function App() {
             />
           </svg>
           <span style={{ marginLeft: "5px" }}>Display</span>{" "}
-          {/* Add margin to the text */}
           <svg
             width="20"
             height="20"
             viewBox="0 0 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            style={{ marginLeft: "5px" }} // Add margin to the second SVG
+            style={{ marginLeft: "5px" }}
           >
             <path
               d="M9.99583 12.75C9.89583 12.75 9.80208 12.7326 9.71458 12.6979C9.62708 12.6632 9.5486 12.6111 9.47916 12.5416L5.52791 8.59038C5.37041 8.43288 5.29513 8.25343 5.30208 8.05204C5.30902 7.85065 5.38888 7.67357 5.54166 7.52079C5.69444 7.36801 5.87152 7.29163 6.07291 7.29163C6.2743 7.29163 6.45138 7.36801 6.60416 7.52079L9.99999 10.9375L13.4167 7.52079C13.5694 7.36801 13.7465 7.2951 13.9479 7.30204C14.1493 7.30899 14.3264 7.38885 14.4792 7.54163C14.6319 7.6944 14.7083 7.87149 14.7083 8.07288C14.7083 8.27426 14.6296 8.45329 14.4721 8.60996L10.5208 12.5416C10.4458 12.6111 10.3673 12.6632 10.2798 12.6979C10.1923 12.7326 10.0985 12.75 9.99583 12.75Z"
@@ -122,89 +121,3 @@ function App() {
 }
 
 export default App;
-
-// import React, { useState, useEffect } from "react";
-// import "./App.css";
-// import GroupSelector from "./components/GroupSelector";
-// import SortSelector from "./components/SortSelector";
-
-// function App() {
-//   const [tickets, setTickets] = useState([]);
-//   const [grouping, setGrouping] = useState("status");
-//   const [sortOrder, setSortOrder] = useState("priority");
-
-//   useEffect(() => {
-//     fetch("https://api.quicksell.co/v1/internal/frontend-assignment")
-//       .then((response) => response.json())
-//       .then((data) => setTickets(data.tickets))
-//       .catch((error) => console.error("Error fetching data: ", error));
-//   }, []);
-
-//   const groupTickets = () => {
-//     switch (grouping) {
-//       case "user":
-//         return tickets.reduce((acc, ticket) => {
-//           (acc[ticket.assigned_user] = acc[ticket.assigned_user] || []).push(
-//             ticket
-//           );
-//           return acc;
-//         }, {});
-//       case "priority":
-//         return tickets.reduce((acc, ticket) => {
-//           (acc[ticket.priority] = acc[ticket.priority] || []).push(ticket);
-//           return acc;
-//         }, {});
-//       case "status":
-//       default:
-//         return tickets.reduce((acc, ticket) => {
-//           (acc[ticket.status] = acc[ticket.status] || []).push(ticket);
-//           return acc;
-//         }, {});
-//     }
-//   };
-
-//   const sortTickets = (group) => {
-//     const sorted = {};
-//     Object.keys(group).forEach((key) => {
-//       sorted[key] = group[key].sort((a, b) => {
-//         if (sortOrder === "priority") {
-//           return b.priority - a.priority;
-//         } else {
-//           return a.title.localeCompare(b.title);
-//         }
-//       });
-//     });
-//     return sorted;
-//   };
-
-//   const groupedTickets = sortTickets(groupTickets());
-
-//   return (
-//     <div className="App">
-//       {/* Grouping and Sorting Options */}
-//       <div className="selectors">
-//         <GroupSelector setGroupBy={setGrouping} />
-//         <SortSelector setSortBy={setSortOrder} />
-//       </div>
-
-//       {/* Render Groups */}
-//       <div className="kanban-board">
-//         {Object.keys(groupedTickets).map((group) => (
-//           <div key={group} className="kanban-column">
-//             <h2>{group}</h2>
-//             {groupedTickets[group].map((ticket) => (
-//               <div key={ticket.id} className="kanban-card">
-//                 <h3>{ticket.title}</h3>
-//                 <p>Status: {ticket.status}</p>
-//                 <p>User: {ticket.assigned_user}</p>
-//                 <p>Priority: {ticket.priority}</p>
-//               </div>
-//             ))}
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default App;
